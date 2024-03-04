@@ -3,12 +3,12 @@ from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 import tensorflow as tf
 from keras.models import Sequential
-from keras.layer import Dense, Input
+from tensorflow.python.keras.layers import Dense, Input
 
 
 #Loading Data
 dataframe = pd.read_csv('Data/Housepricedata.csv')
-print(df)
+print(dataframe)
 
 #input data
 x = dataframe.iloc[:,0:10]
@@ -24,10 +24,10 @@ x_train, x_val, y_train, y_val = train_test_split(x,y, test_size = 0.3)
 
 
 model = Sequential()
-model.add(Input(shape=(10,)))
-model.add(Dense(32,activation='relu'))
-model.add(Dense(32,activation='relu'))
-model.add(Dense(1,activation='sigmoid'))
+model.add(Dense(32, activation='relu', input_shape=(10,))) 
+model.add(Dense(32, activation='relu'))
+model.add(Dense(32, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
 
 model.compile(optimizer='adam',loss='mse',metrics=['accuracy'])
 
